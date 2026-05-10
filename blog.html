@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="PearONE Blog - Marketing Automation insights, email marketing tips, CRM best practices, and education sector expertise. Learn from 15+ years of experience."
+    />
+    <meta
+      name="keywords"
+      content="marketing automation blog, email marketing tips, CRM best practices, B2B marketing, education marketing, Salesforce tips, Dynamics 365 guides"
+    />
+    <title>Blog - PearONE Marketing Automation Insights</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500;700&family=Outfit:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/blog.css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav>
+      <div class="nav-container">
+        <div class="logo-container">
+          <a href="index.html">
+            <img src="logo.png" alt="PearONE Logo" class="logo" />
+          </a>
+        </div>
+        <ul class="nav-links">
+          <li>
+            <a href="index.html#home" data-en="Home" data-pt="Início">Home</a>
+          </li>
+          <li>
+            <a href="index.html#about" data-en="About" data-pt="Sobre">About</a>
+          </li>
+          <li>
+            <a href="index.html#services" data-en="Services" data-pt="Serviços"
+              >Services</a
+            >
+          </li>
+          <li>
+            <a
+              href="index.html#portfolio"
+              data-en="Portfolio"
+              data-pt="Portfólio"
+              >Portfolio</a
+            >
+          </li>
+          <li>
+            <a href="index.html#contact" data-en="Contact" data-pt="Contato"
+              >Contact</a
+            >
+          </li>
+          <li>
+            <a href="blog.html" class="active" data-en="Blog" data-pt="Blog"
+              >Blog</a
+            >
+          </li>
+          <li>
+            <button class="lang-toggle" onclick="toggleLanguage()">
+              PT / EN
+            </button>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Blog Header -->
+    <section class="blog-header">
+      <h1>
+        <span data-en="Marketing Automation" data-pt="Automação de Marketing"
+          >Marketing Automation</span
+        >
+        <span class="highlight" data-en="Insights" data-pt="Insights"
+          >Insights</span
+        >
+      </h1>
+      <p
+        data-en="Tips, strategies, and best practices from 15+ years of hands-on marketing automation experience."
+        data-pt="Dicas, estratégias e boas práticas de 15+ anos de experiência prática em automação de marketing."
+      >
+        Tips, strategies, and best practices from 15+ years of hands-on
+        marketing automation experience.
+      </p>
+    </section>
+
+    <!-- Blog Filters -->
+    <div class="blog-filters">
+      <button
+        class="filter-btn active"
+        data-category="all"
+        data-en="All Posts"
+        data-pt="Todas as Postagens"
+      >
+        All Posts
+      </button>
+      <button
+        class="filter-btn"
+        data-category="email-marketing"
+        data-en="Email Marketing"
+        data-pt="Email Marketing"
+      >
+        Email Marketing
+      </button>
+      <button
+        class="filter-btn"
+        data-category="automation"
+        data-en="Automation"
+        data-pt="Automação"
+      >
+        Automation
+      </button>
+      <button
+        class="filter-btn"
+        data-category="crm"
+        data-en="CRM Platforms"
+        data-pt="Plataformas CRM"
+      >
+        CRM Platforms
+      </button>
+      <button
+        class="filter-btn"
+        data-category="education"
+        data-en="Education Sector"
+        data-pt="Setor Educacional"
+      >
+        Education Sector
+      </button>
+      <button
+        class="filter-btn"
+        data-category="case-studies"
+        data-en="Case Studies"
+        data-pt="Casos de Estudo"
+      >
+        Case Studies
+      </button>
+    </div>
+
+    <!-- Coming Soon Message -->
+    <!-- Coming Soon Message (hidden now that we have content) -->
+    <div class="coming-soon" style="display: none">
+      <h2 data-en="Coming Soon! 🚀" data-pt="Em Breve! 🚀">Coming Soon! 🚀</h2>
+      <p
+        data-en="We're currently crafting valuable content about marketing automation, email marketing best practices, CRM optimization, and education sector insights. Subscribe to our newsletter below to be notified when we launch!"
+        data-pt="Estamos criando conteúdo valioso sobre automação de marketing, melhores práticas de email marketing, otimização de CRM e insights do setor educacional. Assine nossa newsletter abaixo para ser notificado quando lançarmos!"
+      >
+        We're currently crafting valuable content about marketing automation,
+        email marketing best practices, CRM optimization, and education sector
+        insights. Subscribe to our newsletter below to be notified when we
+        launch!
+      </p>
+    </div>
+
+    <!-- Blog Grid -->
+    <div class="blog-container">
+      <div class="blog-grid">
+        <!-- SFMC vs D365 CIJ Comparison Post -->
+        <article class="blog-card" data-category="crm">
+          <div class="blog-image">⚡</div>
+          <div class="blog-content">
+            <div class="blog-meta">
+              <span
+                class="blog-category"
+                data-en="Platform Comparison"
+                data-pt="Comparação de Plataformas"
+                >Platform Comparison</span
+              >
+              <span class="blog-date">Jan 18, 2026</span>
+            </div>
+            <h3
+              data-en="Salesforce Marketing Cloud vs Microsoft Dynamics 365 Customer Insights - Journeys"
+              data-pt="Salesforce Marketing Cloud vs Microsoft Dynamics 365 Customer Insights - Journeys"
+            >
+              Salesforce Marketing Cloud vs Microsoft Dynamics 365 Customer
+              Insights - Journeys
+            </h3>
+            <p
+              data-en="Complete platform comparison based on 15+ years of hands-on experience. Which platform is right for your B2B or B2C business? We break down features, pricing, and real-world use cases."
+              data-pt="Comparação completa de plataformas baseada em mais de 15 anos de experiência prática. Qual plataforma é ideal para seu negócio B2B ou B2C? Detalhamos recursos, preços e casos de uso reais."
+            >
+              Complete platform comparison based on 15+ years of hands-on
+              experience. Which platform is right for your B2B or B2C business?
+              We break down features, pricing, and real-world use cases.
+            </p>
+            <a
+              href="blog-sfmc-vs-dynamics365-cij.html"
+              class="read-more"
+              data-en="Read More →"
+              data-pt="Ler Mais →"
+              >Read More →</a
+            >
+          </div>
+        </article>
+
+        <!-- Placeholder for future posts -->
+        <article
+          class="blog-card"
+          data-category="email-marketing"
+          style="opacity: 0.6; pointer-events: none"
+        >
+          <div class="blog-image">📧</div>
+          <div class="blog-content">
+            <div class="blog-meta">
+              <span
+                class="blog-category"
+                data-en="Email Marketing"
+                data-pt="Email Marketing"
+                >Email Marketing</span
+              >
+              <span class="blog-date" data-en="Coming Soon" data-pt="Em Breve"
+                >Coming Soon</span
+              >
+            </div>
+            <h3
+              data-en="10 Email Deliverability Mistakes Costing You Leads"
+              data-pt="10 Erros de Entregabilidade Custando Leads"
+            >
+              10 Email Deliverability Mistakes Costing You Leads
+            </h3>
+            <p
+              data-en="Learn the most common deliverability issues and how to avoid them in your campaigns."
+              data-pt="Aprenda os problemas de entregabilidade mais comuns e como evitá-los em suas campanhas."
+            >
+              Learn the most common deliverability issues and how to avoid them
+              in your campaigns.
+            </p>
+          </div>
+        </article>
+
+        <article
+          class="blog-card"
+          data-category="automation"
+          style="opacity: 0.6; pointer-events: none"
+        >
+          <div class="blog-image">🔄</div>
+          <div class="blog-content">
+            <div class="blog-meta">
+              <span
+                class="blog-category"
+                data-en="Automation"
+                data-pt="Automação"
+                >Automation</span
+              >
+              <span class="blog-date" data-en="Coming Soon" data-pt="Em Breve"
+                >Coming Soon</span
+              >
+            </div>
+            <h3
+              data-en="Building Effective Lead Nurture Journeys"
+              data-pt="Construindo Jornadas Efetivas de Nutrição de Leads"
+            >
+              Building Effective Lead Nurture Journeys
+            </h3>
+            <p
+              data-en="How to design automated journeys that convert prospects into customers."
+              data-pt="Como projetar jornadas automatizadas que convertem prospects em clientes."
+            >
+              How to design automated journeys that convert prospects into
+              customers.
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <!-- Newsletter Signup -->
+    <section class="newsletter-section">
+      <div class="newsletter-content">
+        <h2 data-en="Stay Updated" data-pt="Mantenha-se Atualizado">
+          Stay Updated
+        </h2>
+        <p
+          data-en="Get marketing automation tips, CRM insights, and industry best practices delivered to your inbox."
+          data-pt="Receba dicas de automação de marketing, insights de CRM e melhores práticas do setor no seu email."
+        >
+          Get marketing automation tips, CRM insights, and industry best
+          practices delivered to your inbox.
+        </p>
+        <form class="newsletter-form" id="newsletterForm">
+          <input type="hidden" name="form_type" value="newsletter" />
+          <input
+            type="email"
+            name="email"
+            placeholder="Enter your email"
+            data-en-placeholder="Enter your email"
+            data-pt-placeholder="Digite seu email"
+            required
+          />
+          <button type="submit" data-en="Subscribe" data-pt="Assinar">
+            Subscribe
+          </button>
+        </form>
+        <p
+          id="newsletterFormStatus"
+          style="margin-top: 1rem; font-weight: 500; display: none"
+        ></p>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="index.html#home" data-en="Home" data-pt="Início">Home</a>
+          <a href="index.html#about" data-en="About" data-pt="Sobre">About</a>
+          <a href="index.html#services" data-en="Services" data-pt="Serviços"
+            >Services</a
+          >
+          <a href="index.html#portfolio" data-en="Portfolio" data-pt="Portfólio"
+            >Portfolio</a
+          >
+          <a href="blog.html" data-en="Blog" data-pt="Blog">Blog</a>
+          <a href="index.html#contact" data-en="Contact" data-pt="Contato"
+            >Contact</a
+          >
+        </div>
+        <p>
+          &copy; 2026 PearONE Marketing Automation.
+          <span
+            data-en="All rights reserved."
+            data-pt="Todos os direitos reservados."
+            >All rights reserved.</span
+          >
+        </p>
+        <p
+          data-en="Based in Brazil 🇧🇷 • Serving Worldwide 🌎"
+          data-pt="Baseado no Brasil 🇧🇷 • Atendimento Global 🌎"
+        >
+          Based in Brazil 🇧🇷 • Serving Worldwide 🌎
+        </p>
+      </div>
+    </footer>
+
+    <script src="js/common.js"></script>
+    <script src="js/blog.js"></script>
+  </body>
+</html>

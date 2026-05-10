@@ -1,0 +1,876 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="PearONE - Expert Marketing Automation Agency specializing in B2B email marketing, CRM platforms, and lead generation for education and enterprise clients worldwide. 15+ years experience with Salesforce, Dynamics 365, HubSpot."
+    />
+    <meta
+      name="keywords"
+      content="marketing automation, email marketing, B2B marketing, Salesforce Marketing Cloud, Dynamics 365, HubSpot, ClickDimensions, CRM, lead generation, education marketing, Brazil marketing agency"
+    />
+    <meta name="author" content="Paloma Oliveira - PearONE" />
+    <meta
+      property="og:title"
+      content="PearONE - Marketing Automation Experts"
+    />
+    <meta
+      property="og:description"
+      content="Transform your email marketing into a consistent driver of engagement, leads, and conversions. Expert marketing automation services for B2B and education sectors."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://pearone.com" />
+    <title>
+      PearONE - Marketing Automation Experts | Email Marketing & CRM Specialists
+    </title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500;700&family=Outfit:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/index.css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav>
+      <div class="nav-container">
+        <div class="logo-container">
+          <img src="logo.png" alt="PearONE Logo" class="logo" />
+        </div>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#home" data-en="Home" data-pt="Início">Home</a></li>
+          <li><a href="#about" data-en="About" data-pt="Sobre">About</a></li>
+          <li>
+            <a href="#services" data-en="Services" data-pt="Serviços"
+              >Services</a
+            >
+          </li>
+          <li>
+            <a href="#portfolio" data-en="Portfolio" data-pt="Portfólio"
+              >Portfolio</a
+            >
+          </li>
+          <li>
+            <a href="#contact" data-en="Contact" data-pt="Contato">Contact</a>
+          </li>
+          <li><a href="blog.html" data-en="Blog" data-pt="Blog">Blog</a></li>
+          <li>
+            <button class="lang-toggle" onclick="toggleLanguage()">
+              PT / EN
+            </button>
+          </li>
+        </ul>
+        <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1>
+            <span data-en="Transform" data-pt="Transforme">Transform</span>
+            <span class="highlight typewriter" id="typewriter"
+              >your business</span
+            ><br />
+            <span
+              data-en="with Marketing Automation"
+              data-pt="com Automação de Marketing"
+              >with Marketing Automation</span
+            >
+          </h1>
+          <p
+            data-en="Expert CRM and email marketing solutions for B2B and B2C companies worldwide. 15+ years turning campaigns into consistent drivers of engagement and growth."
+            data-pt="Soluções especializadas em CRM e email marketing para empresas B2B e B2C globalmente. 15+ anos transformando campanhas em motores consistentes de engajamento e crescimento."
+          >
+            Expert CRM and email marketing solutions for B2B and B2C companies
+            worldwide. 15+ years turning campaigns into consistent drivers of
+            engagement and growth.
+          </p>
+          <div class="cta-group">
+            <a
+              href="#contact"
+              class="btn btn-primary"
+              data-en="Book a Call"
+              data-pt="Agendar Conversa"
+              >Book a Call</a
+            >
+            <a
+              href="#services"
+              class="btn btn-secondary"
+              data-en="Our Services"
+              data-pt="Nossos Serviços"
+              >Our Services</a
+            >
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="platforms-grid">
+            <div class="platform-card">
+              <h3 data-en="Strategy" data-pt="Estratégia">Strategy</h3>
+              <p
+                data-en="Campaign Design & Planning"
+                data-pt="Design e Planejamento de Campanhas"
+              >
+                Campaign Design & Planning
+              </p>
+            </div>
+            <div class="platform-card">
+              <h3 data-en="Automation" data-pt="Automação">Automation</h3>
+              <p
+                data-en="Multi-Platform Expertise"
+                data-pt="Expertise Multi-Plataforma"
+              >
+                Multi-Platform Expertise
+              </p>
+            </div>
+            <div class="platform-card">
+              <h3 data-en="Execution" data-pt="Execução">Execution</h3>
+              <p
+                data-en="Hands-On Implementation"
+                data-pt="Implementação Prática"
+              >
+                Hands-On Implementation
+              </p>
+            </div>
+            <div class="platform-card">
+              <h3 data-en="Results" data-pt="Resultados">Results</h3>
+              <p
+                data-en="Growth-Focused Delivery"
+                data-pt="Entrega Focada em Crescimento"
+              >
+                Growth-Focused Delivery
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+      <div class="section-header">
+        <div
+          class="section-label"
+          data-en="About PearONE"
+          data-pt="Sobre a PearONE"
+        >
+          About PearONE
+        </div>
+        <h2
+          class="section-title"
+          data-en="Strategy Meets Execution"
+          data-pt="Estratégia Encontra Execução"
+        >
+          Strategy Meets Execution
+        </h2>
+        <p
+          class="section-description"
+          data-en="Based in Brazil, serving B2B and B2C clients worldwide with hands-on marketing automation expertise that bridges strategy and technical implementation."
+          data-pt="Baseados no Brasil, atendendo clientes B2B e B2C globalmente com expertise prática em automação de marketing que une estratégia e implementação técnica."
+        >
+          Based in Brazil, serving B2B and B2C clients worldwide with hands-on
+          marketing automation expertise that bridges strategy and technical
+          implementation.
+        </p>
+      </div>
+
+      <div class="about-content">
+        <div class="about-text">
+          <h3
+            data-en="Your Marketing Automation Partner"
+            data-pt="Seu Parceiro em Automação de Marketing"
+          >
+            Your Marketing Automation Partner
+          </h3>
+          <p
+            data-en="We are a senior-level Email & Marketing Automation agency with over 15 years of experience supporting B2B and B2C teams across the US, Canada, the UK, and Brazil. We work hands-on across strategy, execution, and optimization—which means you won't need to manage multiple vendors or translate strategy into action. We do both."
+            data-pt="Somos uma agência sênior em Email e Automação de Marketing com mais de 15 anos de experiência apoiando equipes B2B e B2C nos EUA, Canadá, Reino Unido e Brasil. Trabalhamos de forma prática em estratégia, execução e otimização—o que significa que você não precisará gerenciar múltiplos fornecedores ou traduzir estratégia em ação. Fazemos ambos."
+          >
+            We are a senior-level Email & Marketing Automation agency with over
+            15 years of experience supporting B2B and B2C teams across the US,
+            Canada, the UK, and Brazil. We work hands-on across strategy,
+            execution, and optimization—which means you won't need to manage
+            multiple vendors or translate strategy into action. We do both.
+          </p>
+          <p
+            data-en="Trusted by clients to execute quickly and improve results without hand-holding, our approach is simple: prove value quickly, scale impact, and build long-term partnerships that drive real growth across multiple CRM platforms including Salesforce Marketing Cloud, Microsoft Dynamics 365, HubSpot, ClickDimensions, and more."
+            data-pt="Confiados por clientes para executar rapidamente e melhorar resultados sem supervisão constante, nossa abordagem é simples: provar valor rapidamente, escalar impacto e construir parcerias de longo prazo que geram crescimento real em múltiplas plataformas CRM incluindo Salesforce Marketing Cloud, Microsoft Dynamics 365, HubSpot, ClickDimensions e mais."
+          >
+            Trusted by clients to execute quickly and improve results without
+            hand-holding, our approach is simple: prove value quickly, scale
+            impact, and build long-term partnerships that drive real growth
+            across multiple CRM platforms including Salesforce Marketing Cloud,
+            Microsoft Dynamics 365, HubSpot, ClickDimensions, and more.
+          </p>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <span class="stat-number">15+</span>
+            <span
+              class="stat-label"
+              data-en="Years Experience"
+              data-pt="Anos de Experiência"
+              >Years Experience</span
+            >
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">150+</span>
+            <span
+              class="stat-label"
+              data-en="Clients Served"
+              data-pt="Clientes Atendidos"
+              >Clients Served</span
+            >
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">100%</span>
+            <span
+              class="stat-label"
+              data-en="Job Success Rate"
+              data-pt="Taxa de Sucesso"
+              >Job Success Rate</span
+            >
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">4</span>
+            <span
+              class="stat-label"
+              data-en="Major Platforms"
+              data-pt="Plataformas Principais"
+              >Major Platforms</span
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+      <div class="section-header">
+        <div class="section-label" data-en="What We Do" data-pt="O Que Fazemos">
+          What We Do
+        </div>
+        <h2
+          class="section-title"
+          data-en="Marketing Automation Services"
+          data-pt="Serviços de Automação de Marketing"
+        >
+          Marketing Automation Services
+        </h2>
+        <p
+          class="section-description"
+          data-en="Comprehensive solutions for B2B and B2C companies looking to scale their marketing efforts and drive measurable growth."
+          data-pt="Soluções completas para empresas B2B e B2C que buscam escalar seus esforços de marketing e gerar crescimento mensurável."
+        >
+          Comprehensive solutions for B2B and B2C companies looking to scale
+          their marketing efforts and drive measurable growth.
+        </p>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">📧</div>
+          <h3
+            data-en="Email Marketing & Campaigns"
+            data-pt="Email Marketing & Campanhas"
+          >
+            Email Marketing & Campaigns
+          </h3>
+          <p
+            data-en="Build and optimize B2B and B2C email campaigns focused on engagement, conversion, and customer retention."
+            data-pt="Construa e otimize campanhas de email B2B e B2C focadas em engajamento, conversão e retenção de clientes."
+          >
+            Build and optimize B2B and B2C email campaigns focused on
+            engagement, conversion, and customer retention.
+          </p>
+          <ul class="service-list">
+            <li
+              data-en="Campaign strategy & execution"
+              data-pt="Estratégia e execução de campanhas"
+            >
+              Campaign strategy & execution
+            </li>
+            <li
+              data-en="A/B testing & optimization"
+              data-pt="Testes A/B e otimização"
+            >
+              A/B testing & optimization
+            </li>
+            <li
+              data-en="Deliverability management"
+              data-pt="Gestão de entregabilidade"
+            >
+              Deliverability management
+            </li>
+            <li
+              data-en="Performance analytics"
+              data-pt="Análise de performance"
+            >
+              Performance analytics
+            </li>
+          </ul>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">🔄</div>
+          <h3 data-en="Marketing Automation" data-pt="Automação de Marketing">
+            Marketing Automation
+          </h3>
+          <p
+            data-en="Design lead-generation and nurture journeys aligned with your sales funnel and customer lifecycle."
+            data-pt="Desenhe jornadas de geração e nutrição de leads alinhadas ao seu funil de vendas e ciclo de vida do cliente."
+          >
+            Design lead-generation and nurture journeys aligned with your sales
+            funnel and customer lifecycle.
+          </p>
+          <ul class="service-list">
+            <li
+              data-en="Automated journey building"
+              data-pt="Construção de jornadas automatizadas"
+            >
+              Automated journey building
+            </li>
+            <li
+              data-en="Lead scoring & segmentation"
+              data-pt="Pontuação e segmentação de leads"
+            >
+              Lead scoring & segmentation
+            </li>
+            <li
+              data-en="Trigger-based campaigns"
+              data-pt="Campanhas baseadas em gatilhos"
+            >
+              Trigger-based campaigns
+            </li>
+            <li
+              data-en="Lifecycle marketing"
+              data-pt="Marketing de ciclo de vida"
+            >
+              Lifecycle marketing
+            </li>
+          </ul>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">⚙️</div>
+          <h3
+            data-en="CRM Platform Management"
+            data-pt="Gestão de Plataformas CRM"
+          >
+            CRM Platform Management
+          </h3>
+          <p
+            data-en="Expert implementation and management across Salesforce, Dynamics 365, HubSpot, and ClickDimensions."
+            data-pt="Implementação e gestão especializada em Salesforce, Dynamics 365, HubSpot e ClickDimensions."
+          >
+            Expert implementation and management across Salesforce, Dynamics
+            365, HubSpot, and ClickDimensions.
+          </p>
+          <ul class="service-list">
+            <li
+              data-en="Platform migration & setup"
+              data-pt="Migração e configuração de plataforma"
+            >
+              Platform migration & setup
+            </li>
+            <li
+              data-en="Integration management"
+              data-pt="Gestão de integrações"
+            >
+              Integration management
+            </li>
+            <li
+              data-en="Custom automation logic"
+              data-pt="Lógica de automação customizada"
+            >
+              Custom automation logic
+            </li>
+            <li
+              data-en="Technical troubleshooting"
+              data-pt="Resolução de problemas técnicos"
+            >
+              Technical troubleshooting
+            </li>
+          </ul>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">🎯</div>
+          <h3
+            data-en="Compliance & Best Practices"
+            data-pt="Conformidade & Boas Práticas"
+          >
+            Compliance & Best Practices
+          </h3>
+          <p
+            data-en="Ensure scalable, clean, and compliant email operations following CAN-SPAM, GDPR, and LGPD standards."
+            data-pt="Garanta operações de email escaláveis, limpas e conformes seguindo padrões CAN-SPAM, GDPR e LGPD."
+          >
+            Ensure scalable, clean, and compliant email operations following
+            CAN-SPAM, GDPR, and LGPD standards.
+          </p>
+          <ul class="service-list">
+            <li
+              data-en="Privacy law compliance"
+              data-pt="Conformidade com leis de privacidade"
+            >
+              Privacy law compliance
+            </li>
+            <li
+              data-en="Data hygiene management"
+              data-pt="Gestão de higiene de dados"
+            >
+              Data hygiene management
+            </li>
+            <li data-en="Consent management" data-pt="Gestão de consentimento">
+              Consent management
+            </li>
+            <li
+              data-en="Audit & documentation"
+              data-pt="Auditoria e documentação"
+            >
+              Audit & documentation
+            </li>
+          </ul>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">📊</div>
+          <h3 data-en="Analytics & Reporting" data-pt="Análises & Relatórios">
+            Analytics & Reporting
+          </h3>
+          <p
+            data-en="Partner closely with your team to support pipeline growth through data-driven insights."
+            data-pt="Parceria próxima com sua equipe para apoiar crescimento de pipeline através de insights baseados em dados."
+          >
+            Partner closely with your team to support pipeline growth through
+            data-driven insights.
+          </p>
+          <ul class="service-list">
+            <li
+              data-en="Custom dashboard creation"
+              data-pt="Criação de dashboards customizados"
+            >
+              Custom dashboard creation
+            </li>
+            <li
+              data-en="Campaign performance reports"
+              data-pt="Relatórios de performance de campanhas"
+            >
+              Campaign performance reports
+            </li>
+            <li data-en="ROI tracking" data-pt="Acompanhamento de ROI">
+              ROI tracking
+            </li>
+            <li
+              data-en="Strategic recommendations"
+              data-pt="Recomendações estratégicas"
+            >
+              Strategic recommendations
+            </li>
+          </ul>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">🎯</div>
+          <h3
+            data-en="Customer Journey Optimization"
+            data-pt="Otimização da Jornada do Cliente"
+          >
+            Customer Journey Optimization
+          </h3>
+          <p
+            data-en="Map and optimize every touchpoint in your customer journey to maximize engagement and lifetime value."
+            data-pt="Mapeie e otimize cada ponto de contato na jornada do cliente para maximizar engajamento e valor vitalício."
+          >
+            Map and optimize every touchpoint in your customer journey to
+            maximize engagement and lifetime value.
+          </p>
+          <ul class="service-list">
+            <li
+              data-en="Customer lifecycle mapping"
+              data-pt="Mapeamento do ciclo de vida do cliente"
+            >
+              Customer lifecycle mapping
+            </li>
+            <li
+              data-en="Multi-channel orchestration"
+              data-pt="Orquestração multi-canal"
+            >
+              Multi-channel orchestration
+            </li>
+            <li
+              data-en="Retention & loyalty programs"
+              data-pt="Programas de retenção e fidelidade"
+            >
+              Retention & loyalty programs
+            </li>
+            <li
+              data-en="Personalization strategies"
+              data-pt="Estratégias de personalização"
+            >
+              Personalization strategies
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Portfolio/Testimonials Section -->
+    <section id="portfolio">
+      <div class="section-header">
+        <div
+          class="section-label"
+          data-en="Client Success"
+          data-pt="Sucesso de Clientes"
+        >
+          Client Success
+        </div>
+        <h2
+          class="section-title"
+          data-en="Proven Results That Matter"
+          data-pt="Resultados Comprovados Que Importam"
+        >
+          Proven Results That Matter
+        </h2>
+        <p
+          class="section-description"
+          data-en="Real feedback from clients who've experienced the PearONE difference."
+          data-pt="Feedback real de clientes que experimentaram a diferença PearONE."
+        >
+          Real feedback from clients who've experienced the PearONE difference.
+        </p>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="quote-mark">"</div>
+          <p
+            class="testimonial-text"
+            data-en="The client has been really impressed with your work. Just know they — and we — are all really thankful and happy to have you on the contractor team."
+            data-pt="O cliente ficou realmente impressionado com seu trabalho. Saiba que eles — e nós — somos muito gratos e felizes por tê-la na equipe de contratados."
+          >
+            The client has been really impressed with your work. Just know they
+            — and we — are all really thankful and happy to have you on the
+            contractor team.
+          </p>
+          <p
+            class="testimonial-author"
+            data-en="— Project Manager, US Marketing Agency"
+            data-pt="— Gerente de Projeto, Agência de Marketing EUA"
+          >
+            — Project Manager, US Marketing Agency
+          </p>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="quote-mark">"</div>
+          <p
+            class="testimonial-text"
+            data-en="Paloma has been making major strides on the email marketing side. The team has been really impressed. It's highly technical and the platform can be finicky, but she's taken it on and changed the game. From getting emails flowing smoothly, to designing and launching a new subscription management system, and now making campaigns more automated and evergreen. It's a huge win."
+            data-pt="Paloma tem feito grandes avanços no email marketing. A equipe ficou impressionada. É altamente técnico e a plataforma pode ser complicada, mas ela assumiu e mudou o jogo. Desde fazer os emails fluírem suavemente, até projetar e lançar um novo sistema de gestão de inscrições, e agora tornar as campanhas mais automatizadas e perenes. É uma grande vitória."
+          >
+            Paloma has been making major strides on the email marketing side.
+            The team has been really impressed. It's highly technical and the
+            platform can be finicky, but she's taken it on and changed the game.
+            From getting emails flowing smoothly, to designing and launching a
+            new subscription management system, and now making campaigns more
+            automated and evergreen. It's a huge win.
+          </p>
+          <p
+            class="testimonial-author"
+            data-en="— Marketing Director, Franchise Network (200+ locations)"
+            data-pt="— Diretor de Marketing, Rede de Franquias (200+ locais)"
+          >
+            — Marketing Director, Franchise Network (200+ locations)
+          </p>
+        </div>
+      </div>
+
+      <div class="results-grid">
+        <div class="result-item">
+          <div class="result-number">40%</div>
+          <p
+            class="result-label"
+            data-en="Reduction in Review Cycles"
+            data-pt="Redução em Ciclos de Revisão"
+          >
+            Reduction in Review Cycles
+          </p>
+        </div>
+        <div class="result-item">
+          <div class="result-number">200+</div>
+          <p
+            class="result-label"
+            data-en="Locations Supported"
+            data-pt="Locais Atendidos"
+          >
+            Locations Supported
+          </p>
+        </div>
+        <div class="result-item">
+          <div class="result-number">100%</div>
+          <p
+            class="result-label"
+            data-en="Client Satisfaction"
+            data-pt="Satisfação do Cliente"
+          >
+            Client Satisfaction
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <div class="section-header">
+        <div
+          class="section-label"
+          data-en="Get In Touch"
+          data-pt="Entre em Contato"
+        >
+          Get In Touch
+        </div>
+        <h2
+          class="section-title"
+          data-en="Let's Transform Your Marketing"
+          data-pt="Vamos Transformar Seu Marketing"
+        >
+          Let's Transform Your Marketing
+        </h2>
+        <p
+          class="section-description"
+          data-en="Ready to scale your email marketing and automation? Let's discuss your goals and challenges."
+          data-pt="Pronto para escalar seu email marketing e automação? Vamos discutir seus objetivos e desafios."
+        >
+          Ready to scale your email marketing and automation? Let's discuss your
+          goals and challenges.
+        </p>
+      </div>
+
+      <div class="contact-container">
+        <div class="contact-info">
+          <h3
+            data-en="Why Work With PearONE?"
+            data-pt="Por Que Trabalhar com a PearONE?"
+          >
+            Why Work With PearONE?
+          </h3>
+          <p
+            data-en="You won't need to manage multiple vendors or translate strategy into action. We work hands-on across strategy, execution, and optimization—delivering results without hand-holding."
+            data-pt="Você não precisará gerenciar múltiplos fornecedores ou traduzir estratégia em ação. Trabalhamos de forma prática em estratégia, execução e otimização—entregando resultados sem supervisão constante."
+          >
+            You won't need to manage multiple vendors or translate strategy into
+            action. We work hands-on across strategy, execution, and
+            optimization—delivering results without hand-holding.
+          </p>
+          <div class="contact-methods">
+            <div class="contact-method">
+              <div class="contact-icon">📧</div>
+              <div>
+                <strong data-en="Email" data-pt="Email">Email</strong>
+                <p>
+                  <a
+                    href="/cdn-cgi/l/email-protection"
+                    class="__cf_email__"
+                    data-cfemail="640c0108080b24140105160b0a014a070b09"
+                    >[email&#160;protected]</a
+                  >
+                </p>
+              </div>
+            </div>
+            <div class="contact-method">
+              <div class="contact-icon">💼</div>
+              <div>
+                <strong data-en="Experience" data-pt="Experiência"
+                  >Experience</strong
+                >
+                <p
+                  data-en="15+ Years • 100% Client Satisfaction"
+                  data-pt="15+ Anos • 100% Satisfação de Clientes"
+                >
+                  15+ Years • 100% Client Satisfaction
+                </p>
+              </div>
+            </div>
+            <div class="contact-method">
+              <div class="contact-icon">🌎</div>
+              <div>
+                <strong data-en="Location" data-pt="Localização"
+                  >Location</strong
+                >
+                <p
+                  data-en="Brazil • Serving Worldwide"
+                  data-pt="Brasil • Atendimento Global"
+                >
+                  Brazil • Serving Worldwide
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-container">
+          <form id="contactForm">
+            <input type="hidden" name="form_type" value="contact" />
+            <div class="form-group">
+              <label for="name" data-en="Full Name *" data-pt="Nome Completo *"
+                >Full Name *</label
+              >
+              <input type="text" id="name" name="name" required />
+            </div>
+
+            <div class="form-group">
+              <label for="email" data-en="Email Address *" data-pt="Email *"
+                >Email Address *</label
+              >
+              <input type="email" id="email" name="email" required />
+            </div>
+
+            <div class="form-group">
+              <label
+                for="organization"
+                data-en="Organization"
+                data-pt="Organização"
+                >Organization</label
+              >
+              <input type="text" id="organization" name="organization" />
+            </div>
+
+            <div class="form-group">
+              <label
+                for="interest"
+                data-en="I'm interested in:"
+                data-pt="Tenho interesse em:"
+                >I'm interested in:</label
+              >
+              <select id="interest" name="interest">
+                <option
+                  value=""
+                  data-en="Select a service"
+                  data-pt="Selecione um serviço"
+                >
+                  Select a service
+                </option>
+                <option
+                  value="email-marketing"
+                  data-en="Email Marketing & Campaigns"
+                  data-pt="Email Marketing & Campanhas"
+                >
+                  Email Marketing & Campaigns
+                </option>
+                <option
+                  value="automation"
+                  data-en="Marketing Automation"
+                  data-pt="Automação de Marketing"
+                >
+                  Marketing Automation
+                </option>
+                <option
+                  value="crm"
+                  data-en="CRM Platform Management"
+                  data-pt="Gestão de Plataformas CRM"
+                >
+                  CRM Platform Management
+                </option>
+                <option
+                  value="optimization"
+                  data-en="Customer Journey Optimization"
+                  data-pt="Otimização da Jornada do Cliente"
+                >
+                  Customer Journey Optimization
+                </option>
+                <option
+                  value="consultation"
+                  data-en="General Consultation"
+                  data-pt="Consulta Geral"
+                >
+                  General Consultation
+                </option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label
+                for="message"
+                data-en="Tell me about your project *"
+                data-pt="Conte-me sobre seu projeto *"
+                >Tell me about your project *</label
+              >
+              <textarea id="message" name="message" required></textarea>
+            </div>
+
+            <div class="form-group checkbox">
+              <input type="checkbox" id="newsletter" name="newsletter" />
+              <label
+                for="newsletter"
+                data-en="Yes, I'd like to receive marketing automation tips and insights"
+                data-pt="Sim, gostaria de receber dicas e insights sobre automação de marketing"
+                >Yes, I'd like to receive marketing automation tips and
+                insights</label
+              >
+            </div>
+
+            <button
+              type="submit"
+              class="btn-submit"
+              data-en="Book a Call"
+              data-pt="Agendar Conversa"
+            >
+              Book a Call
+            </button>
+            <p
+              id="contactFormStatus"
+              style="margin-top: 1rem; font-weight: 500; display: none"
+            ></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="#home" data-en="Home" data-pt="Início">Home</a>
+          <a href="#about" data-en="About" data-pt="Sobre">About</a>
+          <a href="#services" data-en="Services" data-pt="Serviços">Services</a>
+          <a href="#portfolio" data-en="Portfolio" data-pt="Portfólio"
+            >Portfolio</a
+          >
+          <a href="blog.html" data-en="Blog" data-pt="Blog">Blog</a>
+          <a href="#contact" data-en="Contact" data-pt="Contato">Contact</a>
+        </div>
+        <p>
+          &copy; 2026 PearONE Marketing Automation.
+          <span
+            data-en="All rights reserved."
+            data-pt="Todos os direitos reservados."
+            >All rights reserved.</span
+          >
+        </p>
+        <p
+          data-en="Based in Brazil 🇧🇷 • Serving Worldwide 🌎"
+          data-pt="Baseado no Brasil 🇧🇷 • Atendimento Global 🌎"
+        >
+          Based in Brazil 🇧🇷 • Serving Worldwide 🌎
+        </p>
+      </div>
+    </footer>
+
+    <script src="js/common.js"></script>
+    <script src="js/index.js"></script>
+  </body>
+</html>

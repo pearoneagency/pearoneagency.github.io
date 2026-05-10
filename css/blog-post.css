@@ -1,0 +1,296 @@
+/* ABOUTME: Styles for PearONE blog post pages (e.g. blog-sfmc-vs-dynamics365-cij.html). */
+/* ABOUTME: Covers article layout, comparison tables, pros/cons boxes, and CTAs. */
+
+body {
+    line-height: 1.8;
+}
+
+/* Article Layout */
+article {
+    max-width: 900px;
+    margin: 8rem auto 4rem;
+    padding: 0 3rem;
+}
+
+.article-header {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 3px solid var(--yellow);
+}
+
+.article-category {
+    display: inline-block;
+    background: rgba(230, 184, 0, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    color: var(--black);
+}
+
+h1 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+
+.article-meta {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    font-size: 0.95rem;
+    color: var(--gray-dark);
+    margin-bottom: 2rem;
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.article-intro {
+    font-size: 1.25rem;
+    color: var(--gray-dark);
+    line-height: 1.8;
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background: var(--gray-light);
+    border-radius: 15px;
+    border-left: 4px solid var(--yellow);
+}
+
+h2 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 2.2rem;
+    margin: 3rem 0 1.5rem;
+    color: var(--black);
+}
+
+h3 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.7rem;
+    margin: 2.5rem 0 1rem;
+    color: var(--black);
+}
+
+h4 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.3rem;
+    margin: 2rem 0 1rem;
+    color: var(--black);
+}
+
+p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+}
+
+ul, ol {
+    margin-bottom: 1.5rem;
+    padding-left: 2rem;
+}
+
+li {
+    margin-bottom: 0.8rem;
+    font-size: 1.05rem;
+}
+
+strong {
+    color: var(--black);
+    font-weight: 600;
+}
+
+/* Comparison Tables */
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    background: var(--white);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.comparison-table thead {
+    background: var(--yellow);
+}
+
+.comparison-table th {
+    padding: 1.5rem;
+    text-align: left;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.comparison-table td {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--gray-light);
+    font-size: 1rem;
+}
+
+.comparison-table tr:last-child td {
+    border-bottom: none;
+}
+
+.comparison-table tr:hover {
+    background: var(--gray-light);
+}
+
+/* Pros and Cons */
+.pros-cons-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.pros-box, .cons-box {
+    padding: 2rem;
+    border-radius: 15px;
+    border-left: 4px solid;
+}
+
+.pros-box {
+    background: rgba(40, 167, 69, 0.05);
+    border-left-color: var(--green);
+}
+
+.cons-box {
+    background: rgba(220, 53, 69, 0.05);
+    border-left-color: var(--red);
+}
+
+.pros-box h4, .cons-box h4 {
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.pros-box h4 {
+    color: var(--green);
+}
+
+.cons-box h4 {
+    color: var(--red);
+}
+
+/* Highlight and Expert Tip Boxes */
+.highlight-box {
+    background: var(--gray-light);
+    padding: 2rem;
+    border-radius: 15px;
+    margin: 2rem 0;
+    border-left: 4px solid var(--yellow);
+}
+
+.highlight-box.expert-tip {
+    background: rgba(230, 184, 0, 0.1);
+}
+
+/* Platform Cards (blog post variant) */
+.platform-card {
+    background: var(--white);
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    margin: 2rem 0;
+    border-top: 4px solid var(--yellow);
+}
+
+.platform-card h3 {
+    margin-top: 0;
+}
+
+/* CTA Box */
+.cta-box {
+    background: var(--yellow);
+    padding: 3rem;
+    border-radius: 20px;
+    text-align: center;
+    margin: 3rem 0;
+}
+
+.cta-box h3 {
+    margin: 0 0 1rem;
+    font-size: 2rem;
+}
+
+.cta-box p {
+    margin-bottom: 2rem;
+}
+
+.btn {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: var(--black);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Score Indicators */
+.score-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+}
+
+.score-bar {
+    width: 100px;
+    height: 8px;
+    background: var(--gray-light);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.score-fill {
+    height: 100%;
+    background: var(--yellow);
+    transition: width 0.3s ease;
+}
+
+footer {
+    margin-top: 4rem;
+}
+
+/* Mobile Responsive - Blog Post */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.2rem;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    article {
+        padding: 0 1.5rem;
+        margin-top: 6rem;
+    }
+
+    .pros-cons-container {
+        grid-template-columns: 1fr;
+    }
+
+    .comparison-table {
+        font-size: 0.9rem;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+        padding: 1rem;
+    }
+}
