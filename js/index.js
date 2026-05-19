@@ -174,6 +174,32 @@ function validateForm(data, lang) {
     return null;
 }
 
+var RATE_LIMIT_KEY = 'pearone_submissions';
+var RATE_LIMIT_MAX = 3;
+var RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000;
+
+function getRecentSubmissions() {
+    var raw = localStorage.getItem(RATE_LIMIT_KEY);
+    if (!raw) return [];
+    try {
+        var timestamps = JSON.parse(raw);
+        var cutoff = Date.now() - RATE_LIMIT_WINDOW_MS;
+        return timestamps.filter(function(t) { return t > cutoff; });
+    } catch (e) {
+        return [];
+    }
+}
+
+function checkSubmitRateLimit() {
+    return getRecentSubmissions().length >= RATE_LIMIT_MAX;
+}
+
+function recordSubmission() {
+    var recent = getRecentSubmissions();
+    recent.push(Date.now());
+    localStorage.setItem(RATE_LIMIT_KEY, JSON.stringify(recent));
+}
+
 // --- Contact Form ---
 
 var WEBHOOK_URL = 'https://hook.us2.make.com/4tkgg6hm4rh3c8mfe8dfyih3sl5cnac9';

@@ -246,4 +246,38 @@ describe('index.js', () => {
             expect(error).not.toMatch(/required/i);
         });
     });
+
+    describe('rate limiting', () => {
+        beforeEach(() => {
+            win.localStorage.clear();
+        });
+
+        test('checkSubmitRateLimit returns false when no submissions yet', () => {
+            expect(win.checkSubmitRateLimit()).toBe(false);
+        });
+
+        test('checkSubmitRateLimit returns false after 1 submission', () => {
+            win.recordSubmission();
+            expect(win.checkSubmitRateLimit()).toBe(false);
+        });
+
+        test('checkSubmitRateLimit returns false after 2 submissions', () => {
+            win.recordSubmission();
+            win.recordSubmission();
+            expect(win.checkSubmitRateLimit()).toBe(false);
+        });
+
+        test('checkSubmitRateLimit returns true after 3 submissions (limit reached)', () => {
+            win.recordSubmission();
+            win.recordSubmission();
+            win.recordSubmission();
+            expect(win.checkSubmitRateLimit()).toBe(true);
+        });
+
+        test('old submissions outside the window are ignored', () => {
+            var oldTimestamp = Date.now() - (61 * 60 * 1000);
+            win.localStorage.setItem('pearone_submissions', JSON.stringify([oldTimestamp, oldTimestamp, oldTimestamp, oldTimestamp]));
+            expect(win.checkSubmitRateLimit()).toBe(false);
+        });
+    });
 });
