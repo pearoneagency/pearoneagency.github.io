@@ -1,7 +1,7 @@
 // ABOUTME: Google Apps Script backend for PearONE contact form.
 // ABOUTME: Validates, sanitizes, writes to Google Sheets, and sends email notification.
 
-var SPREADSHEET_ID = ''; // paste the spreadsheet ID from the Google Sheet URL
+var SPREADSHEET_ID = '1dRIaKMFPcBpsRrYEPP9etDwpizWzyxhMsPkJ6qSKNqc'; // paste the spreadsheet ID from the Google Sheet URL
 var NOTIFICATION_EMAIL = 'paloma@pearone.co';
 var RATE_LIMIT_MAX = 5;
 var RATE_LIMIT_WINDOW_SECONDS = 3600;
@@ -85,6 +85,7 @@ function validateSubmission(data) {
     if (!data.email || String(data.email).trim().length === 0) return 'Email is required.';
     if (String(data.email).length > 254) return 'Email too long.';
     if (!EMAIL_REGEX.test(data.email)) return 'Invalid email format.';
+    if (containsInjection(data.email)) return 'Email contains disallowed content.';
 
     if (data.organization && String(data.organization).length > 200) return 'Organization too long.';
     if (data.organization && containsInjection(data.organization)) return 'Organization contains disallowed content.';
@@ -98,11 +99,15 @@ function validateSubmission(data) {
     return null;
 }
 
+function formatBrazilTimestamp() {
+    return Utilities.formatDate(new Date(), 'America/Sao_Paulo', 'dd/MM/yyyy HH:mm:ss');
+}
+
 function appendToSheet(data) {
     var ss = SpreadsheetApp.openById(SPREADSHEET_ID);
     var sheet = ss.getSheetByName('Form Submissions') || ss.getSheets()[0];
     sheet.appendRow([
-        new Date().toISOString(),
+        formatBrazilTimestamp(),
         data.name,
         data.email,
         data.organization || '',
@@ -123,7 +128,7 @@ function sendNotification(data) {
         + 'Message: ' + data.message + '\n'
         + 'Newsletter: ' + (data.newsletter ? 'Yes' : 'No') + '\n'
         + 'Language: ' + (data.language === 'pt' ? 'Portuguese' : 'English') + '\n'
-        + 'Submitted at: ' + new Date().toISOString() + '\n';
+        + 'Submitted at: ' + formatBrazilTimestamp() + ' (Brasilia)\n';
 
     MailApp.sendEmail(NOTIFICATION_EMAIL, subject, body);
 }

@@ -149,6 +149,9 @@ function validateForm(data, lang) {
     if (!EMAIL_REGEX.test(data.email)) {
         return pt ? 'Formato de email inválido.' : 'Invalid email format.';
     }
+    if (containsInjection(data.email)) {
+        return pt ? 'Email contém caracteres não permitidos.' : 'Email contains disallowed characters.';
+    }
 
     if (data.organization && data.organization.length > 200) {
         return pt ? 'Organização não pode exceder 200 caracteres.' : 'Organization cannot exceed 200 characters.';
@@ -202,7 +205,7 @@ function recordSubmission() {
 
 // --- Contact Form ---
 
-var APPS_SCRIPT_URL = 'PLACEHOLDER_APPS_SCRIPT_URL';
+var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyoQNdOhsBaORS_JC6btdDwpHlMWqB5vEF9PXghKYHvQW7nd9dBInufHMY1AO14VyjSsw/exec';
 
 document.getElementById('contactForm').addEventListener('submit', async function(e) {
     e.preventDefault();
