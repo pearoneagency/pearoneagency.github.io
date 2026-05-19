@@ -1,7 +1,7 @@
 // ABOUTME: Google Apps Script backend for PearONE contact form.
 // ABOUTME: Validates, sanitizes, writes to Google Sheets, and sends email notification.
 
-var SPREADSHEET_ID = '1dRIaKMFPcBpsRrYEPP9etDwpizWzyxhMsPkJ6qSKNqc'; // paste the spreadsheet ID from the Google Sheet URL
+var SPREADSHEET_ID = ''; // set in Apps Script editor only — do not commit to repo
 var NOTIFICATION_EMAIL = 'paloma@pearone.co';
 var RATE_LIMIT_MAX = 5;
 var RATE_LIMIT_WINDOW_SECONDS = 3600;
