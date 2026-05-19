@@ -202,7 +202,7 @@ function recordSubmission() {
 
 // --- Contact Form ---
 
-var WEBHOOK_URL = 'https://hook.us2.make.com/4tkgg6hm4rh3c8mfe8dfyih3sl5cnac9';
+var APPS_SCRIPT_URL = 'PLACEHOLDER_APPS_SCRIPT_URL';
 
 document.getElementById('contactForm').addEventListener('submit', async function(e) {
     e.preventDefault();
@@ -211,30 +211,51 @@ document.getElementById('contactForm').addEventListener('submit', async function
     var statusEl = document.getElementById('contactFormStatus');
     var originalBtnText = submitBtn.textContent;
 
-    submitBtn.disabled = true;
-    submitBtn.textContent = currentLang === 'en' ? 'Sending...' : 'Enviando...';
     statusEl.style.display = 'none';
 
     var formData = {
-        form_type: 'contact',
         name: document.getElementById('name').value,
         email: document.getElementById('email').value,
         organization: document.getElementById('organization').value,
         interest: document.getElementById('interest').value,
         message: document.getElementById('message').value,
         newsletter: document.getElementById('newsletter').checked,
-        submitted_at: new Date().toISOString(),
         language: currentLang
     };
 
+    if (checkSubmitRateLimit()) {
+        statusEl.textContent = currentLang === 'en'
+            ? 'Too many submissions. Please wait before trying again.'
+            : 'Muitos envios. Aguarde antes de tentar novamente.';
+        statusEl.style.color = 'var(--red, #dc3545)';
+        statusEl.style.display = 'block';
+        return;
+    }
+
+    var validationError = validateForm(formData, currentLang);
+    if (validationError) {
+        statusEl.textContent = validationError;
+        statusEl.style.color = 'var(--red, #dc3545)';
+        statusEl.style.display = 'block';
+        return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = currentLang === 'en' ? 'Sending...' : 'Enviando...';
+
     try {
-        var response = await fetch(WEBHOOK_URL, {
+        var response = await fetch(APPS_SCRIPT_URL, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formData)
         });
 
-        if (!response.ok) throw new Error('Request failed');
+        var result = await response.json();
+
+        if (result.status !== 'ok') {
+            throw new Error(result.message || 'Request failed');
+        }
+
+        recordSubmission();
 
         statusEl.textContent = currentLang === 'en'
             ? 'Thank you! We\'ll get back to you within 24 hours.'

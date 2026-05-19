@@ -280,4 +280,39 @@ describe('index.js', () => {
             expect(win.checkSubmitRateLimit()).toBe(false);
         });
     });
+
+    describe('contact form submission', () => {
+        beforeEach(() => {
+            win.localStorage.clear();
+        });
+
+        test('shows validation error when name is empty', () => {
+            win.document.getElementById('name').value = '';
+            win.document.getElementById('email').value = 'test@example.com';
+            win.document.getElementById('message').value = 'This is a test message for validation.';
+
+            var form = win.document.getElementById('contactForm');
+            form.dispatchEvent(new win.Event('submit', { cancelable: true }));
+
+            var status = win.document.getElementById('contactFormStatus');
+            expect(status.style.display).toBe('block');
+            expect(status.style.color).toContain('dc3545');
+        });
+
+        test('shows rate limit error after too many submissions', () => {
+            win.localStorage.setItem('pearone_submissions', JSON.stringify([
+                Date.now(), Date.now(), Date.now()
+            ]));
+
+            win.document.getElementById('name').value = 'Test User';
+            win.document.getElementById('email').value = 'test@example.com';
+            win.document.getElementById('message').value = 'This is a test message for validation.';
+
+            var form = win.document.getElementById('contactForm');
+            form.dispatchEvent(new win.Event('submit', { cancelable: true }));
+
+            var status = win.document.getElementById('contactFormStatus');
+            expect(status.style.display).toBe('block');
+        });
+    });
 });
