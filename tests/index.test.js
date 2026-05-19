@@ -139,4 +139,111 @@ describe('index.js', () => {
             expect(hamburger.classList.contains('active')).toBe(false);
         });
     });
+
+    describe('validateForm', () => {
+        var validData;
+
+        beforeEach(() => {
+            validData = {
+                name: 'João Silva',
+                email: 'joao@example.com',
+                organization: 'Empresa XYZ',
+                interest: 'crm',
+                message: 'I would like to learn more about your CRM services.',
+                newsletter: false,
+                language: 'en'
+            };
+        });
+
+        test('returns null for valid data', () => {
+            expect(win.validateForm(validData, 'en')).toBe(null);
+        });
+
+        test('returns error when name is empty', () => {
+            validData.name = '';
+            expect(win.validateForm(validData, 'en')).not.toBe(null);
+        });
+
+        test('returns error when name is too short', () => {
+            validData.name = 'A';
+            expect(win.validateForm(validData, 'en')).not.toBe(null);
+        });
+
+        test('returns error when name exceeds 100 characters', () => {
+            validData.name = 'A'.repeat(101);
+            expect(win.validateForm(validData, 'en')).not.toBe(null);
+        });
+
+        test('returns error when name contains injection', () => {
+            validData.name = '<script>alert(1)</script>';
+            expect(win.validateForm(validData, 'en')).not.toBe(null);
+        });
+
+        test('returns error when email is empty', () => {
+            validData.email = '';
+            expect(win.validateForm(validData, 'en')).not.toBe(null);
+        });
+
+        test('returns error when email format is invalid', () => {
+            validData.email = 'not-an-email';
+            expect(win.validateForm(validData, 'en')).not.toBe(null);
+        });
+
+        test('returns error when email exceeds 254 characters', () => {
+            validData.email = 'a'.repeat(243) + '@example.com';
+            expect(win.validateForm(validData, 'en')).not.toBe(null);
+        });
+
+        test('returns error when organization exceeds 200 characters', () => {
+            validData.organization = 'A'.repeat(201);
+            expect(win.validateForm(validData, 'en')).not.toBe(null);
+        });
+
+        test('returns error when organization contains injection', () => {
+            validData.organization = '<iframe src="evil.com">';
+            expect(win.validateForm(validData, 'en')).not.toBe(null);
+        });
+
+        test('allows empty organization', () => {
+            validData.organization = '';
+            expect(win.validateForm(validData, 'en')).toBe(null);
+        });
+
+        test('returns error when interest is not a known value', () => {
+            validData.interest = 'hacking';
+            expect(win.validateForm(validData, 'en')).not.toBe(null);
+        });
+
+        test('allows empty interest (no selection)', () => {
+            validData.interest = '';
+            expect(win.validateForm(validData, 'en')).toBe(null);
+        });
+
+        test('returns error when message is empty', () => {
+            validData.message = '';
+            expect(win.validateForm(validData, 'en')).not.toBe(null);
+        });
+
+        test('returns error when message is too short', () => {
+            validData.message = 'Hi';
+            expect(win.validateForm(validData, 'en')).not.toBe(null);
+        });
+
+        test('returns error when message exceeds 2000 characters', () => {
+            validData.message = 'A'.repeat(2001);
+            expect(win.validateForm(validData, 'en')).not.toBe(null);
+        });
+
+        test('returns error when message contains injection', () => {
+            validData.message = 'Check this <script>alert("xss")</script>';
+            expect(win.validateForm(validData, 'en')).not.toBe(null);
+        });
+
+        test('returns Portuguese error messages when lang is pt', () => {
+            validData.name = '';
+            var error = win.validateForm(validData, 'pt');
+            expect(error).not.toBe(null);
+            expect(error).not.toMatch(/required/i);
+        });
+    });
 });

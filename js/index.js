@@ -124,6 +124,56 @@ function containsInjection(text) {
     return false;
 }
 
+var VALID_INTERESTS = ['', 'email-marketing', 'automation', 'crm', 'optimization', 'consultation'];
+var EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function validateForm(data, lang) {
+    var pt = lang === 'pt';
+
+    if (!data.name || data.name.trim().length < 2) {
+        return pt ? 'Nome deve ter pelo menos 2 caracteres.' : 'Name must be at least 2 characters.';
+    }
+    if (data.name.length > 100) {
+        return pt ? 'Nome não pode exceder 100 caracteres.' : 'Name cannot exceed 100 characters.';
+    }
+    if (containsInjection(data.name)) {
+        return pt ? 'Nome contém caracteres não permitidos.' : 'Name contains disallowed characters.';
+    }
+
+    if (!data.email || data.email.trim().length === 0) {
+        return pt ? 'Email é obrigatório.' : 'Email is required.';
+    }
+    if (data.email.length > 254) {
+        return pt ? 'Email não pode exceder 254 caracteres.' : 'Email cannot exceed 254 characters.';
+    }
+    if (!EMAIL_REGEX.test(data.email)) {
+        return pt ? 'Formato de email inválido.' : 'Invalid email format.';
+    }
+
+    if (data.organization && data.organization.length > 200) {
+        return pt ? 'Organização não pode exceder 200 caracteres.' : 'Organization cannot exceed 200 characters.';
+    }
+    if (data.organization && containsInjection(data.organization)) {
+        return pt ? 'Organização contém caracteres não permitidos.' : 'Organization contains disallowed characters.';
+    }
+
+    if (VALID_INTERESTS.indexOf(data.interest) === -1) {
+        return pt ? 'Selecione um serviço válido.' : 'Please select a valid service.';
+    }
+
+    if (!data.message || data.message.trim().length < 10) {
+        return pt ? 'Mensagem deve ter pelo menos 10 caracteres.' : 'Message must be at least 10 characters.';
+    }
+    if (data.message.length > 2000) {
+        return pt ? 'Mensagem não pode exceder 2000 caracteres.' : 'Message cannot exceed 2000 characters.';
+    }
+    if (containsInjection(data.message)) {
+        return pt ? 'Mensagem contém conteúdo não permitido.' : 'Message contains disallowed content.';
+    }
+
+    return null;
+}
+
 // --- Contact Form ---
 
 var WEBHOOK_URL = 'https://hook.us2.make.com/4tkgg6hm4rh3c8mfe8dfyih3sl5cnac9';
