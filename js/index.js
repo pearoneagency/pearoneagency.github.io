@@ -106,6 +106,24 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// --- Form Validation ---
+
+var INJECTION_PATTERNS = [
+    /<script/i,
+    /javascript:/i,
+    /onerror\s*=/i,
+    /onload\s*=/i,
+    /<iframe/i,
+    /<img/i
+];
+
+function containsInjection(text) {
+    for (var i = 0; i < INJECTION_PATTERNS.length; i++) {
+        if (INJECTION_PATTERNS[i].test(text)) return true;
+    }
+    return false;
+}
+
 // --- Contact Form ---
 
 var WEBHOOK_URL = 'https://hook.us2.make.com/4tkgg6hm4rh3c8mfe8dfyih3sl5cnac9';

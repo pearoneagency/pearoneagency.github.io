@@ -78,6 +78,48 @@ describe('index.js', () => {
         });
     });
 
+    describe('containsInjection', () => {
+        test('returns true for script tags', () => {
+            expect(win.containsInjection('<script>alert(1)</script>')).toBe(true);
+        });
+
+        test('returns true for script tags case-insensitive', () => {
+            expect(win.containsInjection('<SCRIPT>alert(1)</SCRIPT>')).toBe(true);
+        });
+
+        test('returns true for javascript: protocol', () => {
+            expect(win.containsInjection('javascript:alert(1)')).toBe(true);
+        });
+
+        test('returns true for onerror attribute', () => {
+            expect(win.containsInjection('x onerror=alert(1)')).toBe(true);
+        });
+
+        test('returns true for onload attribute', () => {
+            expect(win.containsInjection('x onload=alert(1)')).toBe(true);
+        });
+
+        test('returns true for iframe tags', () => {
+            expect(win.containsInjection('<iframe src="x">')).toBe(true);
+        });
+
+        test('returns true for img tags', () => {
+            expect(win.containsInjection('<img src=x onerror=alert(1)>')).toBe(true);
+        });
+
+        test('returns false for normal text', () => {
+            expect(win.containsInjection('Hello, this is a normal message.')).toBe(false);
+        });
+
+        test('returns false for text with angle brackets in conversation', () => {
+            expect(win.containsInjection('Our budget is > 10k and < 50k')).toBe(false);
+        });
+
+        test('returns false for empty string', () => {
+            expect(win.containsInjection('')).toBe(false);
+        });
+    });
+
     describe('mobile menu', () => {
         test('toggleMobileMenu toggles active class on nav and hamburger', () => {
             const navLinks = win.document.getElementById('navLinks');
