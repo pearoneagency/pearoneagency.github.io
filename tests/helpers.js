@@ -35,7 +35,7 @@ function createPageWithScripts(htmlBody, scriptPaths, options = {}) {
         </html>
     `;
 
-    const dom = new JSDOM(html, { runScripts: 'dangerously' });
+    const dom = new JSDOM(html, { runScripts: 'dangerously', url: 'http://localhost' });
     return dom.window;
 }
 

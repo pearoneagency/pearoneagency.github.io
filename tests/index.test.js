@@ -78,6 +78,48 @@ describe('index.js', () => {
         });
     });
 
+    describe('containsInjection', () => {
+        test('returns true for script tags', () => {
+            expect(win.containsInjection('<script>alert(1)</script>')).toBe(true);
+        });
+
+        test('returns true for script tags case-insensitive', () => {
+            expect(win.containsInjection('<SCRIPT>alert(1)</SCRIPT>')).toBe(true);
+        });
+
+        test('returns true for javascript: protocol', () => {
+            expect(win.containsInjection('javascript:alert(1)')).toBe(true);
+        });
+
+        test('returns true for onerror attribute', () => {
+            expect(win.containsInjection('x onerror=alert(1)')).toBe(true);
+        });
+
+        test('returns true for onload attribute', () => {
+            expect(win.containsInjection('x onload=alert(1)')).toBe(true);
+        });
+
+        test('returns true for iframe tags', () => {
+            expect(win.containsInjection('<iframe src="x">')).toBe(true);
+        });
+
+        test('returns true for img tags', () => {
+            expect(win.containsInjection('<img src=x onerror=alert(1)>')).toBe(true);
+        });
+
+        test('returns false for normal text', () => {
+            expect(win.containsInjection('Hello, this is a normal message.')).toBe(false);
+        });
+
+        test('returns false for text with angle brackets in conversation', () => {
+            expect(win.containsInjection('Our budget is > 10k and < 50k')).toBe(false);
+        });
+
+        test('returns false for empty string', () => {
+            expect(win.containsInjection('')).toBe(false);
+        });
+    });
+
     describe('mobile menu', () => {
         test('toggleMobileMenu toggles active class on nav and hamburger', () => {
             const navLinks = win.document.getElementById('navLinks');
@@ -95,6 +137,182 @@ describe('index.js', () => {
 
             expect(navLinks.classList.contains('active')).toBe(false);
             expect(hamburger.classList.contains('active')).toBe(false);
+        });
+    });
+
+    describe('validateForm', () => {
+        var validData;
+
+        beforeEach(() => {
+            validData = {
+                name: 'João Silva',
+                email: 'joao@example.com',
+                organization: 'Empresa XYZ',
+                interest: 'crm',
+                message: 'I would like to learn more about your CRM services.',
+                newsletter: false,
+                language: 'en'
+            };
+        });
+
+        test('returns null for valid data', () => {
+            expect(win.validateForm(validData, 'en')).toBe(null);
+        });
+
+        test('returns error when name is empty', () => {
+            validData.name = '';
+            expect(win.validateForm(validData, 'en')).not.toBe(null);
+        });
+
+        test('returns error when name is too short', () => {
+            validData.name = 'A';
+            expect(win.validateForm(validData, 'en')).not.toBe(null);
+        });
+
+        test('returns error when name exceeds 100 characters', () => {
+            validData.name = 'A'.repeat(101);
+            expect(win.validateForm(validData, 'en')).not.toBe(null);
+        });
+
+        test('returns error when name contains injection', () => {
+            validData.name = '<script>alert(1)</script>';
+            expect(win.validateForm(validData, 'en')).not.toBe(null);
+        });
+
+        test('returns error when email is empty', () => {
+            validData.email = '';
+            expect(win.validateForm(validData, 'en')).not.toBe(null);
+        });
+
+        test('returns error when email format is invalid', () => {
+            validData.email = 'not-an-email';
+            expect(win.validateForm(validData, 'en')).not.toBe(null);
+        });
+
+        test('returns error when email exceeds 254 characters', () => {
+            validData.email = 'a'.repeat(243) + '@example.com';
+            expect(win.validateForm(validData, 'en')).not.toBe(null);
+        });
+
+        test('returns error when organization exceeds 200 characters', () => {
+            validData.organization = 'A'.repeat(201);
+            expect(win.validateForm(validData, 'en')).not.toBe(null);
+        });
+
+        test('returns error when organization contains injection', () => {
+            validData.organization = '<iframe src="evil.com">';
+            expect(win.validateForm(validData, 'en')).not.toBe(null);
+        });
+
+        test('allows empty organization', () => {
+            validData.organization = '';
+            expect(win.validateForm(validData, 'en')).toBe(null);
+        });
+
+        test('returns error when interest is not a known value', () => {
+            validData.interest = 'hacking';
+            expect(win.validateForm(validData, 'en')).not.toBe(null);
+        });
+
+        test('allows empty interest (no selection)', () => {
+            validData.interest = '';
+            expect(win.validateForm(validData, 'en')).toBe(null);
+        });
+
+        test('returns error when message is empty', () => {
+            validData.message = '';
+            expect(win.validateForm(validData, 'en')).not.toBe(null);
+        });
+
+        test('returns error when message is too short', () => {
+            validData.message = 'Hi';
+            expect(win.validateForm(validData, 'en')).not.toBe(null);
+        });
+
+        test('returns error when message exceeds 2000 characters', () => {
+            validData.message = 'A'.repeat(2001);
+            expect(win.validateForm(validData, 'en')).not.toBe(null);
+        });
+
+        test('returns error when message contains injection', () => {
+            validData.message = 'Check this <script>alert("xss")</script>';
+            expect(win.validateForm(validData, 'en')).not.toBe(null);
+        });
+
+        test('returns Portuguese error messages when lang is pt', () => {
+            validData.name = '';
+            var error = win.validateForm(validData, 'pt');
+            expect(error).not.toBe(null);
+            expect(error).not.toMatch(/required/i);
+        });
+    });
+
+    describe('rate limiting', () => {
+        beforeEach(() => {
+            win.localStorage.clear();
+        });
+
+        test('checkSubmitRateLimit returns false when no submissions yet', () => {
+            expect(win.checkSubmitRateLimit()).toBe(false);
+        });
+
+        test('checkSubmitRateLimit returns false after 1 submission', () => {
+            win.recordSubmission();
+            expect(win.checkSubmitRateLimit()).toBe(false);
+        });
+
+        test('checkSubmitRateLimit returns false after 2 submissions', () => {
+            win.recordSubmission();
+            win.recordSubmission();
+            expect(win.checkSubmitRateLimit()).toBe(false);
+        });
+
+        test('checkSubmitRateLimit returns true after 3 submissions (limit reached)', () => {
+            win.recordSubmission();
+            win.recordSubmission();
+            win.recordSubmission();
+            expect(win.checkSubmitRateLimit()).toBe(true);
+        });
+
+        test('old submissions outside the window are ignored', () => {
+            var oldTimestamp = Date.now() - (61 * 60 * 1000);
+            win.localStorage.setItem('pearone_submissions', JSON.stringify([oldTimestamp, oldTimestamp, oldTimestamp, oldTimestamp]));
+            expect(win.checkSubmitRateLimit()).toBe(false);
+        });
+    });
+
+    describe('contact form submission', () => {
+        beforeEach(() => {
+            win.localStorage.clear();
+        });
+
+        test('shows validation error when name is empty', () => {
+            win.document.getElementById('name').value = '';
+            win.document.getElementById('email').value = 'test@example.com';
+            win.document.getElementById('message').value = 'This is a test message for validation.';
+
+            var form = win.document.getElementById('contactForm');
+            form.dispatchEvent(new win.Event('submit', { cancelable: true }));
+
+            var status = win.document.getElementById('contactFormStatus');
+            expect(status.style.display).toBe('block');
+            expect(status.style.color).toContain('dc3545');
+        });
+
+        test('shows rate limit error after too many submissions', () => {
+            win.localStorage.setItem('pearone_submissions', JSON.stringify([
+                Date.now(), Date.now(), Date.now()
+            ]));
+
+            win.document.getElementById('name').value = 'Test User';
+            win.document.getElementById('email').value = 'test@example.com';
+            win.document.getElementById('message').value = 'This is a test message for validation.';
+
+            var form = win.document.getElementById('contactForm');
+            form.dispatchEvent(new win.Event('submit', { cancelable: true }));
+
+            var status = win.document.getElementById('contactFormStatus');
+            expect(status.style.display).toBe('block');
         });
     });
 });

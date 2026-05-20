@@ -439,15 +439,14 @@ section > * {
 
 .contact-info p {
     font-size: 1.1rem;
-    margin-bottom: 2rem;
     color: var(--gray-dark);
 }
 
 .contact-methods {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
+    gap: 3rem;
+    margin-top: 2rem;
 }
 
 .contact-method {

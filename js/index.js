@@ -106,9 +106,106 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// --- Form Validation ---
+
+var INJECTION_PATTERNS = [
+    /<script/i,
+    /javascript:/i,
+    /onerror\s*=/i,
+    /onload\s*=/i,
+    /<iframe/i,
+    /<img/i
+];
+
+function containsInjection(text) {
+    for (var i = 0; i < INJECTION_PATTERNS.length; i++) {
+        if (INJECTION_PATTERNS[i].test(text)) return true;
+    }
+    return false;
+}
+
+var VALID_INTERESTS = ['', 'email-marketing', 'automation', 'crm', 'optimization', 'consultation'];
+var EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function validateForm(data, lang) {
+    var pt = lang === 'pt';
+
+    if (!data.name || data.name.trim().length < 2) {
+        return pt ? 'Nome deve ter pelo menos 2 caracteres.' : 'Name must be at least 2 characters.';
+    }
+    if (data.name.length > 100) {
+        return pt ? 'Nome não pode exceder 100 caracteres.' : 'Name cannot exceed 100 characters.';
+    }
+    if (containsInjection(data.name)) {
+        return pt ? 'Nome contém caracteres não permitidos.' : 'Name contains disallowed characters.';
+    }
+
+    if (!data.email || data.email.trim().length === 0) {
+        return pt ? 'Email é obrigatório.' : 'Email is required.';
+    }
+    if (data.email.length > 254) {
+        return pt ? 'Email não pode exceder 254 caracteres.' : 'Email cannot exceed 254 characters.';
+    }
+    if (!EMAIL_REGEX.test(data.email)) {
+        return pt ? 'Formato de email inválido.' : 'Invalid email format.';
+    }
+    if (containsInjection(data.email)) {
+        return pt ? 'Email contém caracteres não permitidos.' : 'Email contains disallowed characters.';
+    }
+
+    if (data.organization && data.organization.length > 200) {
+        return pt ? 'Organização não pode exceder 200 caracteres.' : 'Organization cannot exceed 200 characters.';
+    }
+    if (data.organization && containsInjection(data.organization)) {
+        return pt ? 'Organização contém caracteres não permitidos.' : 'Organization contains disallowed characters.';
+    }
+
+    if (VALID_INTERESTS.indexOf(data.interest) === -1) {
+        return pt ? 'Selecione um serviço válido.' : 'Please select a valid service.';
+    }
+
+    if (!data.message || data.message.trim().length < 10) {
+        return pt ? 'Mensagem deve ter pelo menos 10 caracteres.' : 'Message must be at least 10 characters.';
+    }
+    if (data.message.length > 2000) {
+        return pt ? 'Mensagem não pode exceder 2000 caracteres.' : 'Message cannot exceed 2000 characters.';
+    }
+    if (containsInjection(data.message)) {
+        return pt ? 'Mensagem contém conteúdo não permitido.' : 'Message contains disallowed content.';
+    }
+
+    return null;
+}
+
+var RATE_LIMIT_KEY = 'pearone_submissions';
+var RATE_LIMIT_MAX = 3;
+var RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000;
+
+function getRecentSubmissions() {
+    var raw = localStorage.getItem(RATE_LIMIT_KEY);
+    if (!raw) return [];
+    try {
+        var timestamps = JSON.parse(raw);
+        var cutoff = Date.now() - RATE_LIMIT_WINDOW_MS;
+        return timestamps.filter(function(t) { return t > cutoff; });
+    } catch (e) {
+        return [];
+    }
+}
+
+function checkSubmitRateLimit() {
+    return getRecentSubmissions().length >= RATE_LIMIT_MAX;
+}
+
+function recordSubmission() {
+    var recent = getRecentSubmissions();
+    recent.push(Date.now());
+    localStorage.setItem(RATE_LIMIT_KEY, JSON.stringify(recent));
+}
+
 // --- Contact Form ---
 
-var WEBHOOK_URL = 'https://hook.us2.make.com/4tkgg6hm4rh3c8mfe8dfyih3sl5cnac9';
+var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyoQNdOhsBaORS_JC6btdDwpHlMWqB5vEF9PXghKYHvQW7nd9dBInufHMY1AO14VyjSsw/exec';
 
 document.getElementById('contactForm').addEventListener('submit', async function(e) {
     e.preventDefault();
@@ -117,30 +214,51 @@ document.getElementById('contactForm').addEventListener('submit', async function
     var statusEl = document.getElementById('contactFormStatus');
     var originalBtnText = submitBtn.textContent;
 
-    submitBtn.disabled = true;
-    submitBtn.textContent = currentLang === 'en' ? 'Sending...' : 'Enviando...';
     statusEl.style.display = 'none';
 
     var formData = {
-        form_type: 'contact',
         name: document.getElementById('name').value,
         email: document.getElementById('email').value,
         organization: document.getElementById('organization').value,
         interest: document.getElementById('interest').value,
         message: document.getElementById('message').value,
         newsletter: document.getElementById('newsletter').checked,
-        submitted_at: new Date().toISOString(),
         language: currentLang
     };
 
+    if (checkSubmitRateLimit()) {
+        statusEl.textContent = currentLang === 'en'
+            ? 'Too many submissions. Please wait before trying again.'
+            : 'Muitos envios. Aguarde antes de tentar novamente.';
+        statusEl.style.color = 'var(--red, #dc3545)';
+        statusEl.style.display = 'block';
+        return;
+    }
+
+    var validationError = validateForm(formData, currentLang);
+    if (validationError) {
+        statusEl.textContent = validationError;
+        statusEl.style.color = 'var(--red, #dc3545)';
+        statusEl.style.display = 'block';
+        return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = currentLang === 'en' ? 'Sending...' : 'Enviando...';
+
     try {
-        var response = await fetch(WEBHOOK_URL, {
+        var response = await fetch(APPS_SCRIPT_URL, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formData)
         });
 
-        if (!response.ok) throw new Error('Request failed');
+        var result = await response.json();
+
+        if (result.status !== 'ok') {
+            throw new Error(result.message || 'Request failed');
+        }
+
+        recordSubmission();
 
         statusEl.textContent = currentLang === 'en'
             ? 'Thank you! We\'ll get back to you within 24 hours.'
